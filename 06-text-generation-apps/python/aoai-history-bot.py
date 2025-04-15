@@ -9,7 +9,7 @@ load_dotenv()
 client = AzureOpenAI(
   azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"], 
   api_key=os.environ['AZURE_OPENAI_API_KEY'],  
-  api_version = "2023-10-01-preview"
+  api_version = os.environ['AZURE_OPENAI_API_VERSION']
   )
 
 deployment=os.environ['AZURE_OPENAI_DEPLOYMENT']
@@ -30,7 +30,3 @@ completion = client.chat.completions.create(model=deployment, messages=messages,
 
 # print response
 print(completion.choices[0].message.content)
-
-#  very unhappy _____.
-
-# Once upon a time there was a very unhappy mermaid.

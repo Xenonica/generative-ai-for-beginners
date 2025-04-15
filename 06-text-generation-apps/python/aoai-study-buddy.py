@@ -9,7 +9,7 @@ load_dotenv()
 client = AzureOpenAI(
   azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"], 
   api_key=os.environ['AZURE_OPENAI_API_KEY'],  
-  api_version = "2023-10-01-preview"
+  api_version = os.environ['AZURE_OPENAI_API_VERSION']
   )
 
 deployment=os.environ['AZURE_OPENAI_DEPLOYMENT']
@@ -25,6 +25,8 @@ Whenever certain questions are asked, you need to provide response in below form
 - Example code showing the concept implementation
 - explanation of the example and how the concept is done for the user to understand better.
 
+If the question is not related to python language, DO NOT answer the question. Only answer to questions that are in python language only
+
 Provide answer for the question: {question}
 """
 messages = [{"role": "user", "content": prompt}]  
@@ -33,7 +35,3 @@ completion = client.chat.completions.create(model=deployment, messages=messages)
 
 # print response
 print(completion.choices[0].message.content)
-
-#  very unhappy _____.
-
-# Once upon a time there was a very unhappy mermaid.
